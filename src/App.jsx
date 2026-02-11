@@ -141,13 +141,13 @@ return (
 {/* NAVBAR */}
 <nav className="fixed w-full glass-nav z-50" aria-label="Navegación principal">
 
-<div className="max-w-6xl mx-auto flex justify-between p-4">
+<div className="max-w-6xl mx-auto flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 p-4">
 
-<h1 className="font-bold text-gray-800">
+<h1 className="font-bold text-gray-800 text-center sm:text-left shrink-0">
 OF Premium / OF Deluxe
 </h1>
 
-<div className="flex gap-6 text-gray-700 text-sm">
+<div className="flex flex-wrap justify-center sm:justify-end gap-2 sm:gap-4 md:gap-6 text-gray-700 text-sm">
 
 <NavLink label="Referencias" target="referencias"/>
 <NavLink label="Prueba contenido" target="prueba"/>
@@ -215,7 +215,7 @@ Enviar Mensaje
 <GlassCard id="modelos">
 <h2 className="text-2xl font-semibold mb-4">Modelos Disponibles</h2>
 
-<div className="grid md:grid-cols-3 gap-4">
+<div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 sm:gap-3">
 
 {["Francesca Trisini","mommysharonc","Ennid Wong","FridaItzel","Sylunh","Emilia Vizcarra",
   "Melisa Ruiz","Yolany Gomez","xoxlovelysweets","Brenda Castro","ivana banana","ggval",
@@ -225,7 +225,7 @@ Enviar Mensaje
   "Stefany Chavez"
 ]
 .map(n=>(
-<MagneticCard key={n} className="p-4 text-gray-800 font-medium">
+<MagneticCard key={n} className="py-2.5 px-3 text-gray-800 font-medium text-sm sm:text-base truncate" title={n}>
 {n}
 </MagneticCard>
 ))}
