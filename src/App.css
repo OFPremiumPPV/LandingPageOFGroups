@@ -1,0 +1,202 @@
+/* Liquid glass: paneles tipo iOS con reflejo y sombra - más cristalino */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.25) !important;
+  backdrop-filter: blur(2px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(2px) saturate(180%) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.6) !important;
+  border-radius: 1.75rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 
+    0 2px 8px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.9),
+    inset 1px 0 0 0 rgba(255, 255, 255, 0.7),
+    inset -1px -1px 0 0 rgba(255, 255, 255, 0.3);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.35s ease,
+    border-color 0.35s ease, backdrop-filter 0.35s ease;
+  position: relative;
+  isolation: isolate;
+  will-change: transform, backdrop-filter;
+}
+
+.glass-panel:hover {
+  background: rgba(255, 255, 255, 0.32) !important;
+  backdrop-filter: blur(2px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(2px) saturate(200%) !important;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15),
+    0 4px 16px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 0 rgba(255, 255, 255, 1),
+    inset 1px 0 0 0 rgba(255, 255, 255, 0.8),
+    inset -1px -1px 0 0 rgba(255, 255, 255, 0.4);
+  border-color: rgba(255, 255, 255, 0.75) !important;
+}
+
+/* Botón / CTA con efecto vidrio - texto blanco puro para contraste */
+.glass-cta {
+  display: block;
+  text-align: center;
+  padding: 1rem 1.5rem;
+  border-radius: 1rem;
+  font-weight: 600;
+  color: #ffffff !important;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+  position: relative;
+  overflow: hidden;
+  border: 1.5px solid rgba(255, 255, 255, 0.6) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.7),
+    0 0 0 1px rgba(255, 255, 255, 0.3);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease, backdrop-filter 0.25s ease;
+  isolation: isolate;
+  backdrop-filter: blur(2px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(2px) saturate(160%) !important;
+}
+
+.glass-cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  opacity: 0.75;
+  z-index: -1;
+  border-radius: inherit;
+  filter: blur(0);
+}
+
+.glass-cta:hover {
+  transform: scale(1.02);
+  color: #ffffff !important;
+  backdrop-filter: blur(2px) saturate(180%);
+  -webkit-backdrop-filter: blur(2px) saturate(180%);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.7),
+    0 0 0 1px rgba(255, 255, 255, 0.3);
+  filter: brightness(1.1);
+}
+
+.glass-cta::before {
+  transition: opacity 0.25s ease;
+}
+
+.glass-cta:hover::before {
+  opacity: 0.85;
+}
+
+/* Tarjetas internas (modelos, promos) con vidrio - más cristalino */
+.glass-card {
+  background: rgba(255, 255, 255, 0.25) !important;
+  backdrop-filter: blur(2px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(2px) saturate(160%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  border-radius: 1rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.8),
+    inset 1px 0 0 0 rgba(255, 255, 255, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-2px) scale(1.01);
+  background: rgba(255, 255, 255, 0.35) !important;
+  backdrop-filter: blur(2px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(2px) saturate(180%) !important;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.9),
+    inset 1px 0 0 0 rgba(255, 255, 255, 0.7);
+}
+
+/* Nav link: pill highlight al hover (estilo dock iOS) - más cristalino */
+.glass-nav-link {
+  padding: 0.4rem 0.75rem;
+  border-radius: 9999px;
+  transition: background 0.25s ease, color 0.25s ease, backdrop-filter 0.25s ease;
+}
+
+.glass-nav-link:hover {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  color: #1d4ed8;
+}
+
+/* Navbar como barra de vidrio - más cristalino */
+.glass-nav {
+  background: rgba(255, 255, 255, 0.3) !important;
+  backdrop-filter: blur(2px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(2px) saturate(180%) !important;
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.6) !important;
+  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.8),
+    inset 1px 0 0 0 rgba(255, 255, 255, 0.6);
+}
+
+#root {
+  text-align: left;
+}
+
+/* Cursor personalizado con efecto glassmorphism */
+.custom-cursor {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.6),
+    inset 0 0 10px rgba(255, 255, 255, 0.4);
+  pointer-events: none;
+  z-index: 99999;
+  transition: transform 0.15s cubic-bezier(0.23, 1, 0.32, 1), 
+    width 0.2s ease, 
+    height 0.2s ease,
+    opacity 0.2s ease;
+  will-change: transform;
+}
+
+/* Glow/spotlight que sigue el cursor */
+.cursor-glow {
+  position: fixed;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(147, 197, 253, 0.3) 0%,
+    rgba(251, 207, 232, 0.2) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 9998;
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+    opacity 0.3s ease;
+  filter: blur(20px);
+}
+
+/* Ocultar cursor nativo en desktop */
+@media (min-width: 768px) {
+  * {
+    cursor: none !important;
+  }
+  
+  /* Restaurar cursor en inputs y textareas */
+  input,
+  textarea,
+  select,
+  button {
+    cursor: text !important;
+  }
+  
+  a,
+  button,
+  .glass-cta,
+  .glass-card,
+  .glass-nav-link {
+    cursor: none !important;
+  }
+}
+
+/* Efecto magnético en elementos interactivos */
+.magnetic-element {
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: transform;
+}
