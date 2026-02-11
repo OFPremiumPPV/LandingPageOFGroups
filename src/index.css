@@ -2,6 +2,11 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 :root {
@@ -28,6 +33,7 @@ body {
   background: var(--glass-bg);
   background-attachment: fixed;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+  overflow-x: hidden;
 }
 
 /* Blob suave de fondo para sensación “beneath the glass” */
@@ -59,4 +65,7 @@ a:hover {
   margin: 0 auto;
   padding: 0 1rem 2rem;
   min-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
