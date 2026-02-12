@@ -141,13 +141,13 @@ return (
 {/* NAVBAR */}
 <nav className="fixed top-0 left-0 right-0 w-full glass-nav z-50" aria-label="Navegación principal">
 
-<div className="max-w-6xl mx-auto flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 p-4">
+<div className="max-w-6xl mx-auto flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-4 p-2 sm:p-4 md:p-5">
 
-<h1 className="font-bold text-gray-800 text-center sm:text-left">
+<h1 className="font-bold text-gray-800 text-center sm:text-left text-sm sm:text-base md:text-lg px-2">
 OF Premium / OF Deluxe
 </h1>
 
-<div className="flex flex-wrap justify-center sm:justify-end gap-2 sm:gap-4 md:gap-6 text-gray-700 text-sm">
+<div className="flex flex-wrap justify-center sm:justify-end gap-1 sm:gap-2 md:gap-4 lg:gap-6 text-gray-700 text-xs sm:text-sm">
 
 <NavLink label="Referencias" target="referencias"/>
 <NavLink label="Prueba contenido" target="prueba"/>
@@ -161,12 +161,12 @@ OF Premium / OF Deluxe
 </div>
 </nav>
 
-<div className="pt-28 text-center px-4">
+<div className="pt-32 sm:pt-32 md:pt-36 lg:pt-40 text-center px-4">
 
 <motion.h1
 initial={{opacity:0,y:20}}
 animate={{opacity:1,y:0}}
-className="text-5xl font-bold text-gray-800 mb-4">
+className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-3 sm:mb-4 px-2">
 
 Información de Acceso a canales VIP 
 
