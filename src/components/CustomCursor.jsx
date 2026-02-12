@@ -6,6 +6,9 @@ export default function CustomCursor() {
   const [isClicking, setIsClicking] = useState(false);
 
   useEffect(() => {
+    // Solo ejecutar en cliente
+    if (typeof window === "undefined") return;
+    
     const updateCursor = (e) => {
       setPosition({ x: e.clientX, y: e.clientY });
     };
