@@ -136,14 +136,14 @@ export default function App(){
 return (
 <div className="min-h-screen relative">
   <CustomCursor />
-  <WebGLBackground />
+  {typeof window !== "undefined" && <WebGLBackground />}
 
 {/* NAVBAR */}
-<nav className="fixed w-full glass-nav z-50" aria-label="Navegación principal">
+<nav className="fixed top-0 left-0 right-0 w-full glass-nav z-50" aria-label="Navegación principal">
 
 <div className="max-w-6xl mx-auto flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 p-4">
 
-<h1 className="font-bold text-gray-800 text-center sm:text-left shrink-0">
+<h1 className="font-bold text-gray-800 text-center sm:text-left">
 OF Premium / OF Deluxe
 </h1>
 
