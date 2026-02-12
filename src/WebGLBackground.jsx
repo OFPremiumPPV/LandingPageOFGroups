@@ -6,6 +6,8 @@ export default function WebGLBackground(){
 const mountRef = useRef(null);
 
 useEffect(()=>{
+// Solo ejecutar en cliente (evitar SSR)
+if (typeof window === "undefined") return;
 
 const scene=new THREE.Scene();
 
@@ -46,6 +48,7 @@ renderer.render(scene,camera);
 animate();
 
 const handleResize=()=>{
+if (typeof window === "undefined") return;
 camera.aspect=window.innerWidth/window.innerHeight;
 camera.updateProjectionMatrix();
 renderer.setSize(window.innerWidth,window.innerHeight);
