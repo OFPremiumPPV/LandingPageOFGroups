@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 import GlassCard from "./GlassCard";
 import WebGLBackground from "./WebGLBackground";
 import CustomCursor from "./components/CustomCursor";
+import PhotoCarousel from "./components/PhotoCarousel";
 
 
 const MagneticButton = ({ href, children, className = "", target, rel }) => {
@@ -151,7 +152,7 @@ OF Premium / OF Deluxe
 
 <NavLink label="Referencias" target="referencias"/>
 <NavLink label="Prueba contenido" target="prueba"/>
-<NavLink label="Mensaje Telegram" target="mensaje"/>
+<NavLink label="Mensaje Telegram (Comprobante de pago)" target="mensaje"/>
 <NavLink label="Metodos de pago" target="pagos"/>
 <NavLink label="Modelos disponibles" target="modelos"/>
 <NavLink label="Promociones" target="promos"/>
@@ -178,28 +179,54 @@ Acceso inmediato • Contenido Actualizado • Los mejores PPV
 
 </div>
 
+<GlassCard id="mensaje">
+<h2 className="text-2xl font-semibold mb-4">Mensaje Telegram (Comprobante de pago)</h2>
+
+<MagneticButton href="https://t.me/Rasputin1916GG" className="glass-cta bg-sky-500 font-semibold" target="_blank" rel="noopener noreferrer">
+Enviar Mensaje
+</MagneticButton>
+</GlassCard>
+
 <GlassCard id="referencias">
 <h2 className="text-2xl font-semibold mb-4">Referencias</h2>
 
-<MagneticButton href="https://t.me/refOfPremium" className="glass-cta bg-blue-500 font-semibold" target="_blank" rel="noopener noreferrer">
+<PhotoCarousel
+  title="Galería de referencias"
+  items={[
+    { src: "https://images2.imgbox.com/ee/73/uq61pLyu_o.jpeg", href: "https://t.me/refOfPremium", alt: "Referencia 1" },
+    { src: "https://images2.imgbox.com/d1/2c/5qsF3EqV_o.jpeg", href: "https://t.me/refOfPremium", alt: "Referencia 2" },
+    { src: "https://images2.imgbox.com/c1/53/sSkh74iJ_o.jpeg", href: "https://t.me/refOfPremium", alt: "Referencia 3" },
+    { src: "https://images2.imgbox.com/e4/0e/lK3gI3fY_o.jpeg", href: "https://t.me/refOfPremium", alt: "Referencia 4" },
+    { src: "https://images2.imgbox.com/40/d9/SOuJtGUe_o.jpeg", href: "https://t.me/refOfPremium", alt: "Referencia 5" },
+    { src: "https://images2.imgbox.com/96/0d/KuolLGJT_o.jpeg", href: "https://t.me/refOfPremium", alt: "Referencia 6" },
+    { src: "https://images2.imgbox.com/ae/d3/fEwI3A5R_o.jpeg", href: "https://t.me/refOfPremium", alt: "Referencia 7" }
+  ]}
+/>
+
+{/* <MagneticButton href="https://t.me/refOfPremium" className="glass-cta bg-blue-500 font-semibold mt-4" target="_blank" rel="noopener noreferrer">
 Ir a Referencias
-</MagneticButton>
+</MagneticButton> */}
 </GlassCard>
 
 <GlassCard id="prueba">
 <h2 className="text-2xl font-semibold mb-4">Prueba Contenido</h2>
 
-<MagneticButton href="https://t.me/pruebaCont" className="glass-cta bg-emerald-500 font-semibold" target="_blank" rel="noopener noreferrer">
+<PhotoCarousel
+  title="Galería de pruebas"
+  items={[
+    { src: "https://images2.imgbox.com/39/d2/Nto14S4V_o.jpeg", href: "https://t.me/pruebaCont", alt: "Prueba 1" },
+    { src: "https://images2.imgbox.com/b7/92/xWjCl2G6_o.jpeg", href: "https://t.me/pruebaCont", alt: "Prueba 2" },
+    { src: "https://images2.imgbox.com/c7/ef/v7aO6I4W_o.jpeg", href: "https://t.me/pruebaCont", alt: "Prueba 3" },
+    { src: "https://images2.imgbox.com/8c/6b/jbFhkIoF_o.jpeg", href: "https://t.me/pruebaCont", alt: "Prueba 4" },
+    { src: "https://images2.imgbox.com/d3/36/Og2JaRfo_o.jpeg", href: "https://t.me/pruebaCont", alt: "Prueba 5" },
+    { src: "https://images2.imgbox.com/ce/d6/9LAEJSXd_o.jpeg", href: "https://t.me/pruebaCont", alt: "Prueba 6" },
+    { src: "https://images2.imgbox.com/b1/67/tKRV7Uo2_o.jpeg", href: "https://t.me/pruebaCont", alt: "Prueba 7" }
+  ]}
+/>
+
+{/* <MagneticButton href="https://t.me/pruebaCont" className="glass-cta bg-emerald-500 font-semibold mt-4" target="_blank" rel="noopener noreferrer">
 Ver Pruebas
-</MagneticButton>
-</GlassCard>
-
-<GlassCard id="mensaje">
-<h2 className="text-2xl font-semibold mb-4">Mensaje Telegram</h2>
-
-<MagneticButton href="https://t.me/Rasputin1916GG" className="glass-cta bg-sky-500 font-semibold" target="_blank" rel="noopener noreferrer">
-Enviar Mensaje
-</MagneticButton>
+</MagneticButton> */}
 </GlassCard>
 
 <GlassCard id="pagos">
