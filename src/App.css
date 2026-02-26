@@ -220,3 +220,217 @@
   transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   will-change: transform;
 }
+
+/* Photo carousel - estilo stories/reels */
+.photo-carousel-wrapper {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto 1rem;
+}
+
+.photo-carousel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  min-height: 220px;
+  padding: 0 2.5rem;
+}
+
+.photo-carousel-stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 320px;
+  height: 200px;
+  perspective: 800px;
+}
+
+.photo-carousel-card {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 140px;
+  height: 200px;
+  margin-left: -70px;
+  margin-top: -100px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  flex-shrink: 0;
+  backface-visibility: hidden;
+}
+
+.photo-carousel-card-button {
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+  display: block;
+}
+
+.photo-carousel-card-button:focus {
+  outline: none;
+}
+
+.photo-carousel-card-button:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.photo-carousel-card-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  overflow: hidden;
+  background: #f1f5f9;
+}
+
+.photo-carousel-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.photo-carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  color: #1e293b;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.photo-carousel-arrow:hover {
+  background: #fff;
+  transform: translateY(-50%) scale(1.05);
+}
+
+.photo-carousel-arrow-left {
+  left: 0.5rem;
+}
+
+.photo-carousel-arrow-right {
+  right: 0.5rem;
+}
+
+.photo-carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.35rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.photo-carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.photo-carousel-dot:hover {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.photo-carousel-dot.active {
+  background: #3b82f6;
+  transform: scale(1.2);
+}
+
+@media (min-width: 640px) {
+  .photo-carousel-stage {
+    max-width: 480px;
+    height: 260px;
+  }
+
+  .photo-carousel-card {
+    width: 180px;
+    height: 260px;
+    margin-left: -90px;
+    margin-top: -130px;
+  }
+
+  .photo-carousel-container {
+    min-height: 280px;
+    padding: 0 3.5rem;
+  }
+}
+
+/* Lightbox zoom */
+.photo-carousel-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  cursor: pointer;
+}
+
+.photo-carousel-lightbox-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background 0.2s;
+}
+
+.photo-carousel-lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.photo-carousel-lightbox-content {
+  max-width: 90vw;
+  max-height: 90vh;
+  cursor: default;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.photo-carousel-lightbox-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 90vh;
+  object-fit: contain;
+  vertical-align: middle;
+}
