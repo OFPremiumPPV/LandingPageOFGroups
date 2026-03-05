@@ -1,0 +1,520 @@
+/* Liquid glass: paneles tipo iOS con reflejo y sombra - más cristalino */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.25) !important;
+  backdrop-filter: blur(2px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(2px) saturate(180%) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.6) !important;
+  border-radius: 1.75rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 
+    0 2px 8px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.9),
+    inset 1px 0 0 0 rgba(255, 255, 255, 0.7),
+    inset -1px -1px 0 0 rgba(255, 255, 255, 0.3);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.35s ease,
+    border-color 0.35s ease, backdrop-filter 0.35s ease;
+  position: relative;
+  isolation: isolate;
+  will-change: transform, backdrop-filter;
+}
+
+.glass-panel:hover {
+  background: rgba(255, 255, 255, 0.32) !important;
+  backdrop-filter: blur(2px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(2px) saturate(200%) !important;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15),
+    0 4px 16px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 0 rgba(255, 255, 255, 1),
+    inset 1px 0 0 0 rgba(255, 255, 255, 0.8),
+    inset -1px -1px 0 0 rgba(255, 255, 255, 0.4);
+  border-color: rgba(255, 255, 255, 0.75) !important;
+}
+
+/* Botón / CTA con efecto vidrio - texto blanco puro para contraste */
+.glass-cta {
+  display: block;
+  text-align: center;
+  padding: 1rem 1.5rem;
+  border-radius: 1rem;
+  font-weight: 600;
+  color: #ffffff !important;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+  position: relative;
+  overflow: hidden;
+  border: 1.5px solid rgba(255, 255, 255, 0.6) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.7),
+    0 0 0 1px rgba(255, 255, 255, 0.3);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease, backdrop-filter 0.25s ease;
+  isolation: isolate;
+  backdrop-filter: blur(2px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(2px) saturate(160%) !important;
+}
+
+.glass-cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  opacity: 0.75;
+  z-index: -1;
+  border-radius: inherit;
+  filter: blur(0);
+}
+
+.glass-cta:hover {
+  transform: scale(1.02);
+  color: #ffffff !important;
+  backdrop-filter: blur(2px) saturate(180%);
+  -webkit-backdrop-filter: blur(2px) saturate(180%);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.7),
+    0 0 0 1px rgba(255, 255, 255, 0.3);
+  filter: brightness(1.1);
+}
+
+.glass-cta::before {
+  transition: opacity 0.25s ease;
+}
+
+.glass-cta:hover::before {
+  opacity: 0.85;
+}
+
+/* Tarjetas internas (modelos, promos) con vidrio - más cristalino */
+.glass-card {
+  background: rgba(255, 255, 255, 0.25) !important;
+  backdrop-filter: blur(2px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(2px) saturate(160%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  border-radius: 1rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.8),
+    inset 1px 0 0 0 rgba(255, 255, 255, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-2px) scale(1.01);
+  background: rgba(255, 255, 255, 0.35) !important;
+  backdrop-filter: blur(2px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(2px) saturate(180%) !important;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.9),
+    inset 1px 0 0 0 rgba(255, 255, 255, 0.7);
+}
+
+/* Nav link: pill highlight al hover (estilo dock iOS) - más cristalino */
+.glass-nav-link {
+  padding: 0.3rem 0.5rem;
+  border-radius: 9999px;
+  transition: background 0.25s ease, color 0.25s ease, backdrop-filter 0.25s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+@media (min-width: 640px) {
+  .glass-nav-link {
+    padding: 0.4rem 0.75rem;
+  }
+}
+
+.glass-nav-link:hover {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  color: #1d4ed8;
+}
+
+/* Navbar como barra de vidrio - más cristalino */
+.glass-nav {
+  background: rgba(255, 255, 255, 0.3) !important;
+  backdrop-filter: blur(2px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(2px) saturate(180%) !important;
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.6) !important;
+  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.8),
+    inset 1px 0 0 0 rgba(255, 255, 255, 0.6);
+}
+
+@media (min-width: 640px) {
+  .glass-nav {
+    min-height: 64px;
+  }
+}
+
+@media (min-width: 640px) {
+  .glass-nav {
+    min-height: 64px;
+  }
+}
+
+#root {
+  text-align: left;
+}
+
+/* Cursor personalizado con efecto glassmorphism */
+.custom-cursor {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.6),
+    inset 0 0 10px rgba(255, 255, 255, 0.4);
+  pointer-events: none;
+  z-index: 99999;
+  transition: transform 0.15s cubic-bezier(0.23, 1, 0.32, 1), 
+    width 0.2s ease, 
+    height 0.2s ease,
+    opacity 0.2s ease;
+  will-change: transform;
+}
+
+/* Glow/spotlight que sigue el cursor */
+.cursor-glow {
+  position: fixed;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(147, 197, 253, 0.3) 0%,
+    rgba(251, 207, 232, 0.2) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 9998;
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+    opacity 0.3s ease;
+  filter: blur(20px);
+}
+
+/* Ocultar cursor nativo en desktop */
+@media (min-width: 768px) {
+  * {
+    cursor: none !important;
+  }
+  
+  /* Restaurar cursor en inputs y textareas */
+  input,
+  textarea,
+  select,
+  button {
+    cursor: text !important;
+  }
+  
+  a,
+  button,
+  .glass-cta,
+  .glass-card,
+  .glass-nav-link {
+    cursor: none !important;
+  }
+}
+
+/* Efecto magnético en elementos interactivos */
+.magnetic-element {
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: transform;
+}
+
+/* Photo carousel - estilo stories/reels */
+.photo-carousel-wrapper {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto 1rem;
+}
+
+.photo-carousel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  min-height: 220px;
+  padding: 0 2.5rem;
+}
+
+.photo-carousel-stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 320px;
+  height: 200px;
+  perspective: 800px;
+}
+
+.photo-carousel-card {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 140px;
+  height: 200px;
+  margin-left: -70px;
+  margin-top: -100px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  flex-shrink: 0;
+  backface-visibility: hidden;
+}
+
+.photo-carousel-card-button {
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+  display: block;
+}
+
+.photo-carousel-card-button:focus {
+  outline: none;
+}
+
+.photo-carousel-card-button:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.photo-carousel-card-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  overflow: hidden;
+  background: #f1f5f9;
+}
+
+.photo-carousel-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.photo-carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  color: #1e293b;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.photo-carousel-arrow:hover {
+  background: #fff;
+  transform: translateY(-50%) scale(1.05);
+}
+
+.photo-carousel-arrow-left {
+  left: 0.5rem;
+}
+
+.photo-carousel-arrow-right {
+  right: 0.5rem;
+}
+
+.photo-carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.35rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.photo-carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.photo-carousel-dot:hover {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.photo-carousel-dot.active {
+  background: #3b82f6;
+  transform: scale(1.2);
+}
+
+@media (min-width: 640px) {
+  .photo-carousel-stage {
+    max-width: 480px;
+    height: 260px;
+  }
+
+  .photo-carousel-card {
+    width: 180px;
+    height: 260px;
+    margin-left: -90px;
+    margin-top: -130px;
+  }
+
+  .photo-carousel-container {
+    min-height: 280px;
+    padding: 0 3.5rem;
+  }
+}
+
+/* Lightbox zoom */
+.photo-carousel-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  cursor: pointer;
+}
+
+.photo-carousel-lightbox-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background 0.2s;
+}
+
+.photo-carousel-lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.photo-carousel-lightbox-content {
+  max-width: 90vw;
+  max-height: 90vh;
+  cursor: default;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.photo-carousel-lightbox-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 90vh;
+  object-fit: contain;
+  vertical-align: middle;
+}
+
+/* Modal métodos de pago */
+.payment-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.payment-modal-content {
+  cursor: default;
+  width: 100%;
+  max-width: 420px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 1.25rem;
+  border: 1.5px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.payment-modal-header {
+  flex-shrink: 0;
+  padding: 1.5rem 1.5rem 0;
+}
+
+.payment-modal-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 1rem 1.5rem 1.5rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+.payment-modal-close {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.08);
+  color: #374151;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background 0.2s;
+}
+
+.payment-modal-close:hover {
+  background: rgba(0, 0, 0, 0.14);
+}
+
+.payment-method-button {
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+}
+
+.payment-method-button:focus {
+  outline: none;
+}
+
+.payment-method-button:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  border-radius: 0.75rem;
+}

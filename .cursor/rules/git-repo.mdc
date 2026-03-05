@@ -1,0 +1,21 @@
+---
+description: Repo GitHub y flujo para subir cambios (add, commit, push)
+alwaysApply: true
+---
+
+# Repositorio Git - Landing OF Premium
+
+## Remoto
+- **URL:** https://github.com/OFPremiumPPV/LandingPageOFGroups
+- **Remoto:** `origin`
+- **Rama por defecto:** `main`
+
+## Subir cambios
+**NUNCA hacer `git push` a `origin main` sin que el usuario lo autorice explícitamente.** No ejecutar push aunque pida "subir cambios" a menos que confirme que quiere desplegar al remoto (por ejemplo: "sí, sube a GitHub" o "autorizo el push").
+
+Cuando el usuario **autorice** subir al remoto:
+1. `git add` de los archivos modificados o nuevos (o `git add .` si aplica).
+2. `git commit -m "mensaje descriptivo"` con un mensaje claro en español.
+3. `git push -u origin main` (o `git push` si ya está configurado el upstream).
+
+Si pide "sube los cambios" sin autorizar push al remoto, solo hacer add y commit en local y avisar que para desplegar debe autorizar el push.
