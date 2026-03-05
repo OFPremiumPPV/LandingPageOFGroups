@@ -9,7 +9,8 @@ export const paymentConfig = {
     clientId:
       import.meta.env.VITE_PAYPAL_CLIENT_ID ||
       "AaMwGMAP82m7VPis9nZLncVWttMjxHhFDcfwDbqQ8Qc0fE8CIHQDwFrKwLSDq23loxLgEEm3WLO63_Vv",
-    createOrderUrl: import.meta.env.VITE_PAYPAL_CREATE_ORDER_URL || "",
+    createOrderUrl:
+      import.meta.env.VITE_PAYPAL_CREATE_ORDER_URL || "/api/paypal/create-order",
     defaultAmount: "299",
     defaultCurrency: "MXN",
   },

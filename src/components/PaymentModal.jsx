@@ -11,10 +11,10 @@ const CopyField = ({ label, value }) => {
     setTimeout(() => setCopied(false), 2000);
   };
   return (
-    <div className="flex flex-col gap-1">
+    <div className="payment-modal-field flex flex-col gap-1.5">
       <span className="text-sm font-medium text-gray-600">{label}</span>
-      <div className="flex items-center gap-2 rounded-xl bg-white/40 px-3 py-2 backdrop-blur-sm">
-        <code className="flex-1 truncate text-gray-800">{value}</code>
+      <div className="flex items-center gap-2 rounded-xl bg-white/40 px-3 py-2.5 backdrop-blur-sm">
+        <code className="flex-1 truncate text-gray-800 text-base">{value}</code>
         <button
           type="button"
           onClick={copy}
@@ -36,6 +36,12 @@ export default function PaymentModal({ type, onClose }) {
   const handleOverlayClick = (e) => {
     if (e.target === overlayRef.current) onClose();
   };
+
+  useEffect(() => {
+    if (type) {
+      document.getElementById("pagos")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [type]);
 
   useEffect(() => {
     if (type !== "paypal") return;
@@ -127,7 +133,7 @@ export default function PaymentModal({ type, onClose }) {
         onClick={handleOverlayClick}
       >
         <motion.div
-          className="payment-modal-content"
+          className={`payment-modal-content${type === "transferencia" ? " payment-modal-content--transferencia" : ""}`}
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.95 }}
@@ -145,9 +151,9 @@ export default function PaymentModal({ type, onClose }) {
             </button>
           </div>
 
-          <div className="payment-modal-body">
+          <div className={`payment-modal-body${type === "transferencia" ? " payment-modal-body--transferencia" : ""}`}>
           {type === "transferencia" && (
-            <div className="space-y-4">
+            <div className="space-y-4 pb-6">
               <CopyField label="Banco" value={paymentConfig.transferencia.banco} />
               <CopyField label="CLABE" value={paymentConfig.transferencia.clabe} />
               <CopyField label="Cuenta" value={paymentConfig.transferencia.cuenta} />

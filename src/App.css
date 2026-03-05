@@ -444,37 +444,87 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  padding: 1.5rem;
   cursor: pointer;
 }
 
 .payment-modal-content {
   cursor: default;
   width: 100%;
-  max-width: 420px;
-  max-height: 90vh;
+  min-width: 320px;
+  max-width: 540px;
+  min-height: 50vh;
+  max-height: 92vh;
   display: flex;
   flex-direction: column;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-radius: 1.25rem;
+  border-radius: 1.5rem;
   border: 1.5px solid rgba(255, 255, 255, 0.8);
   box-shadow: 0 24px 48px rgba(0, 0, 0, 0.2);
   overflow: hidden;
 }
 
+.payment-modal-content--transferencia {
+  min-height: 82vh;
+}
+
 .payment-modal-header {
   flex-shrink: 0;
-  padding: 1.5rem 1.5rem 0;
+  padding: 1.75rem 1.75rem 0;
+}
+
+.payment-modal-content .payment-modal-header h3 {
+  font-size: 1.5rem;
+  line-height: 1.3;
 }
 
 .payment-modal-body {
-  flex: 1;
+  flex: 1 1 0;
   min-height: 0;
+  max-height: calc(92vh - 5.5rem);
   overflow-y: auto;
-  padding: 1rem 1.5rem 1.5rem;
+  overflow-x: hidden;
+  padding: 1.25rem 1.75rem 1.75rem;
   -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  font-size: 1rem;
+}
+
+.payment-modal-body--transferencia {
+  padding-bottom: 3.5rem;
+}
+
+.payment-modal-body .payment-modal-field > span {
+  font-size: 0.9375rem;
+}
+
+.payment-modal-body .payment-modal-field code {
+  font-size: 1rem;
+}
+
+.payment-modal-body .payment-modal-field button.rounded-lg {
+  padding: 0.5rem 1rem;
+  font-size: 0.9375rem;
+}
+
+.payment-modal-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.payment-modal-body::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 4px;
+}
+
+.payment-modal-body::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.payment-modal-body::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.35);
 }
 
 .payment-modal-close {
