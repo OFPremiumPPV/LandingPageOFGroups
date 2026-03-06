@@ -1,6 +1,8 @@
 /**
  * Cloudflare Pages Function: captura una orden aprobada en PayPal.
  * Así el pago se completa y aparece en la actividad de la cuenta Business.
+ * El frontend solo considera éxito cuando recibe { success: true }.
+ * Para registrar pagos en BD o logs, añadir aquí después de captureOrder().
  * Variables de entorno: PAYPAL_CLIENT_ID, PAYPAL_SECRET, PAYPAL_API_BASE (opcional)
  */
 
@@ -82,7 +84,8 @@ export async function onRequestPost(context) {
       apiBase
     );
     const result = await captureOrder(token, orderId, apiBase);
-    return jsonResponse({ success: true, details: result });
+    // Respuesta explícita success: true para que el frontend registre el pago correctamente
+    return jsonResponse({ success: true, orderId, details: result });
   } catch (err) {
     console.error(err);
     return jsonResponse(

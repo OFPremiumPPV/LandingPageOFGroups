@@ -32,6 +32,8 @@ export default function PaymentModal({ type, onClose }) {
   const paypalContainerRef = useRef(null);
   const [paypalReady, setPaypalReady] = useState(false);
   const [paypalError, setPaypalError] = useState(null);
+  const [paymentSuccess, setPaymentSuccess] = useState(false);
+  const [paymentError, setPaymentError] = useState(null);
 
   const handleOverlayClick = (e) => {
     if (e.target === overlayRef.current) onClose();
@@ -134,28 +136,41 @@ export default function PaymentModal({ type, onClose }) {
             .then((data) => {
               const id = data.orderId || data.id;
               if (!id || typeof id !== "string") {
-                return Promise.reject(new Error(data?.error || "No se recibió orderId del servidor"));
+                const msg = data?.error || "No se recibió orderId del servidor";
+                setPaymentError(msg);
+                return Promise.reject(new Error(msg));
               }
               return String(id).trim();
+            })
+            .catch((err) => {
+              setPaymentError(err?.message || "No se pudo crear la orden. Revisa tu conexión.");
+              return Promise.reject(err);
             }),
         onApprove: (data) => {
           const orderId = data.orderID || data.orderId;
           if (!orderId) {
-            onClose();
+            setPaymentError("No se recibió el identificador de la orden. Contacta soporte.");
             return;
           }
+          setPaypalError(null);
           fetch(captureOrderUrl, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ orderId }),
           })
             .then(parseJsonResponse)
-            .then(() => onClose())
+            .then((data) => {
+              if (data?.success !== true && !data?.details) {
+                setPaymentError("El pago no pudo registrarse correctamente. Contacta soporte con tu comprobante.");
+                return;
+              }
+              setPaymentSuccess(true);
+            })
             .catch((err) => {
-              setPaypalError(err?.message || "El pago se aprobó pero falló la confirmación. Contacta soporte.");
+              setPaymentError(err?.message || "El pago se aprobó pero falló la confirmación. Contacta soporte.");
             });
         },
-        onError: (err) => setPaypalError(err?.message || "Error en PayPal"),
+        onError: (err) => setPaymentError(err?.message || "Error en PayPal"),
       })
       .render(container);
   };
@@ -178,6 +193,9 @@ export default function PaymentModal({ type, onClose }) {
   };
   const title = titles[type] || "Método de pago";
 
+  const showSuccess = type === "paypal" && paymentSuccess;
+  const showError = type === "paypal" && paymentError;
+
   return (
     <AnimatePresence>
       <motion.div
@@ -189,12 +207,61 @@ export default function PaymentModal({ type, onClose }) {
         onClick={handleOverlayClick}
       >
         <motion.div
-          className={`payment-modal-content${type === "transferencia" ? " payment-modal-content--transferencia" : ""}`}
+          className={`payment-modal-content${showSuccess || showError ? " payment-modal-content--result" : ""}${type === "transferencia" ? " payment-modal-content--transferencia" : ""}${showSuccess ? " payment-modal-content--success" : ""}${showError ? " payment-modal-content--error" : ""}`}
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.95 }}
           onClick={(e) => e.stopPropagation()}
         >
+          {showSuccess && (
+            <>
+              <div className="payment-result-header">
+                <div className="payment-result-icon payment-result-icon--success" aria-hidden>✓</div>
+                <h3 className="payment-result-title">Pago realizado</h3>
+              </div>
+              <div className="payment-result-body">
+                <p className="payment-result-message">Tu pago fue procesado correctamente.</p>
+                <p className="payment-result-hint">No olvides enviar tu comprobante por Telegram.</p>
+                <a
+                  href="https://t.me/Rasputin1916GG"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="payment-result-link"
+                >
+                  Enviar comprobante por Telegram
+                </a>
+                <button
+                  type="button"
+                  onClick={onClose}
+                  className="payment-result-button payment-result-button--primary"
+                >
+                  Entendido
+                </button>
+              </div>
+            </>
+          )}
+
+          {showError && (
+            <>
+              <div className="payment-result-header">
+                <div className="payment-result-icon payment-result-icon--error" aria-hidden>!</div>
+                <h3 className="payment-result-title">Error en el pago</h3>
+              </div>
+              <div className="payment-result-body">
+                <p className="payment-result-message payment-result-message--error">{paymentError}</p>
+                <button
+                  type="button"
+                  onClick={() => setPaymentError(null)}
+                  className="payment-result-button"
+                >
+                  Cerrar
+                </button>
+              </div>
+            </>
+          )}
+
+          {!showSuccess && !showError && (
+            <>
           <div className="payment-modal-header flex items-center justify-between">
             <h3 className="text-xl font-semibold text-gray-800">{title}</h3>
             <button
@@ -244,6 +311,8 @@ export default function PaymentModal({ type, onClose }) {
             </div>
           )}
           </div>
+            </>
+          )}
         </motion.div>
       </motion.div>
     </AnimatePresence>

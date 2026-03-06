@@ -623,3 +623,119 @@ body.payment-modal-open {
   outline-offset: 2px;
   border-radius: 0.75rem;
 }
+
+/* Modales de resultado de pago (estilo iOS) */
+.payment-modal-content--result {
+  min-height: 0;
+  max-width: 340px;
+}
+
+.payment-modal-content--success .payment-result-icon--success,
+.payment-modal-content--error .payment-result-icon--error {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0 auto 1rem;
+  flex-shrink: 0;
+}
+
+.payment-modal-content--success .payment-result-icon--success {
+  background: rgba(34, 197, 94, 0.15);
+  color: #16a34a;
+  border: 2px solid rgba(34, 197, 94, 0.4);
+}
+
+.payment-modal-content--error .payment-result-icon--error {
+  background: rgba(239, 68, 68, 0.12);
+  color: #dc2626;
+  border: 2px solid rgba(239, 68, 68, 0.35);
+}
+
+.payment-result-header {
+  padding: 1.75rem 1.5rem 0;
+  text-align: center;
+}
+
+.payment-result-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.payment-result-body {
+  padding: 1.25rem 1.5rem 1.75rem;
+  text-align: center;
+}
+
+.payment-result-message {
+  font-size: 1rem;
+  color: #4b5563;
+  margin: 0 0 0.75rem;
+  line-height: 1.5;
+}
+
+.payment-result-message--error {
+  color: #374151;
+  background: rgba(0, 0, 0, 0.04);
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  margin-bottom: 1.25rem;
+}
+
+.payment-result-hint {
+  font-size: 0.9375rem;
+  color: #6b7280;
+  margin: 0 0 1rem;
+  line-height: 1.45;
+}
+
+.payment-result-link {
+  display: inline-block;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #0284c7;
+  text-decoration: none;
+  margin-bottom: 1.25rem;
+  padding: 0.35em 0;
+  border-radius: 8px;
+  transition: color 0.2s, background 0.2s;
+}
+
+.payment-result-link:hover {
+  color: #0369a1;
+  text-decoration: underline;
+}
+
+.payment-result-button {
+  display: block;
+  width: 100%;
+  padding: 0.875rem 1.25rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1f2937;
+  background: rgba(0, 0, 0, 0.08);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.payment-result-button:hover {
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.payment-result-button--primary {
+  background: #16a34a;
+  color: #fff;
+}
+
+.payment-result-button--primary:hover {
+  background: #15803d;
+}
