@@ -73,7 +73,8 @@ export default function PaymentModal({ type, onClose }) {
   const renderButtons = () => {
     if (!window.paypal || !paypalContainerRef.current) return;
     paypalContainerRef.current.innerHTML = "";
-    const { createOrderUrl, defaultAmount, defaultCurrency } = paymentConfig.paypal;
+    const { createOrderUrl, captureOrderUrl, defaultAmount, defaultCurrency } =
+      paymentConfig.paypal;
 
     if (!createOrderUrl) {
       setPaypalError(null);
@@ -95,8 +96,25 @@ export default function PaymentModal({ type, onClose }) {
             .then((r) => r.json())
             .then((data) => data.orderId || data.id),
         onApprove: (data) => {
-          console.log("Order approved", data);
-          onClose();
+          const orderId = data.orderID || data.orderId;
+          if (!orderId) {
+            onClose();
+            return;
+          }
+          fetch(captureOrderUrl, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ orderId }),
+          })
+            .then((r) => r.json())
+            .then(() => {
+              console.log("Order approved and captured", orderId);
+              onClose();
+            })
+            .catch((err) => {
+              console.error("Capture error", err);
+              setPaypalError("El pago se aprobó pero falló la confirmación. Contacta soporte.");
+            });
         },
         onError: (err) => setPaypalError(err?.message || "Error en PayPal"),
       })

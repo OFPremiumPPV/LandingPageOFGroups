@@ -11,6 +11,8 @@ export const paymentConfig = {
       "AaMwGMAP82m7VPis9nZLncVWttMjxHhFDcfwDbqQ8Qc0fE8CIHQDwFrKwLSDq23loxLgEEm3WLO63_Vv",
     createOrderUrl:
       import.meta.env.VITE_PAYPAL_CREATE_ORDER_URL || "/api/paypal/create-order",
+    captureOrderUrl:
+      import.meta.env.VITE_PAYPAL_CAPTURE_ORDER_URL || "/api/paypal/capture-order",
     defaultAmount: "299",
     defaultCurrency: "MXN",
   },
