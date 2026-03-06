@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
 /**
@@ -97,45 +98,48 @@ export default function PhotoCarousel({ items = [], title }) {
         </div>
       )}
 
-      {/* Lightbox zoom */}
-      <AnimatePresence>
-        {zoomImage && (
-          <motion.div
-            className="photo-carousel-lightbox"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            onClick={closeZoom}
-            role="dialog"
-            aria-modal="true"
-            aria-label="Vista ampliada"
-          >
-            <button
-              type="button"
-              className="photo-carousel-lightbox-close"
-              onClick={closeZoom}
-              aria-label="Cerrar"
-            >
-              ×
-            </button>
+      {/* Lightbox zoom: renderizado en document.body para quedar encima de todo */}
+      {zoomImage &&
+        typeof document !== "undefined" &&
+        createPortal(
+          <AnimatePresence>
             <motion.div
-              className="photo-carousel-lightbox-content"
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
+              className="photo-carousel-lightbox"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              onClick={(e) => e.stopPropagation()}
+              onClick={closeZoom}
+              role="dialog"
+              aria-modal="true"
+              aria-label="Vista ampliada"
             >
-              <img
-                src={zoomImage.src}
-                alt={zoomImage.alt || "Vista ampliada"}
-                className="photo-carousel-lightbox-image"
-              />
+              <button
+                type="button"
+                className="photo-carousel-lightbox-close"
+                onClick={closeZoom}
+                aria-label="Cerrar"
+              >
+                ×
+              </button>
+              <motion.div
+                className="photo-carousel-lightbox-content"
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <img
+                  src={zoomImage.src}
+                  alt={zoomImage.alt || "Vista ampliada"}
+                  className="photo-carousel-lightbox-image"
+                />
+              </motion.div>
             </motion.div>
-          </motion.div>
+          </AnimatePresence>,
+          document.body
         )}
-      </AnimatePresence>
     </div>
   );
 }

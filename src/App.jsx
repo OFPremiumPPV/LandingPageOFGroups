@@ -1,3 +1,4 @@
+import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import GlassCard from "./GlassCard";
@@ -182,8 +183,10 @@ Acceso inmediato • Contenido Actualizado • Los mejores PPV
 </div>
 
 <GlassCard id="mensaje">
-<h2 className="text-2xl font-semibold mb-4">Mensaje Telegram (Comprobante de pago)</h2>
-
+<h2 className="text-2xl font-semibold mb-2">Mensaje Telegram (Comprobante de pago)</h2>
+<p className="text-gray-600 text-sm sm:text-base mb-4">
+  Atención personalizada, información de los grupos y envío de comprobante de pago.
+</p>
 <MagneticButton href="https://t.me/Rasputin1916GG" className="glass-cta bg-sky-500 font-semibold" target="_blank" rel="noopener noreferrer">
 Enviar Mensaje
 </MagneticButton>
@@ -232,8 +235,10 @@ Ver Pruebas
 </GlassCard>
 
 <GlassCard id="pagos">
-<h2 className="text-2xl font-semibold mb-4">Métodos de Pago</h2>
-
+<h2 className="text-2xl font-semibold mb-2">Métodos de Pago</h2>
+<p className="text-gray-600 text-sm sm:text-base mb-4">
+  Haz clic para obtener datos de pago o paga con PayPal directamente aquí.
+</p>
 <ul className="space-y-3 text-gray-700 list-none p-0 m-0">
 <li>
   <button type="button" className="payment-method-button w-full" onClick={() => setPaymentModal("transferencia")}>
@@ -252,9 +257,11 @@ Ver Pruebas
 </li>
 </ul>
 
-{paymentModal && (
-  <PaymentModal type={paymentModal} onClose={() => setPaymentModal(null)} />
-)}
+{paymentModal &&
+  createPortal(
+    <PaymentModal type={paymentModal} onClose={() => setPaymentModal(null)} />,
+    document.body
+  )}
 </GlassCard>
 
 <GlassCard id="modelos">

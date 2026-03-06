@@ -215,6 +215,40 @@
   }
 }
 
+/* Con modal de pago abierto: mostrar cursor nativo en desktop */
+@media (min-width: 768px) {
+  body.payment-modal-open,
+  body.payment-modal-open * {
+    cursor: auto !important;
+  }
+  body.payment-modal-open button,
+  body.payment-modal-open a,
+  body.payment-modal-open [role="button"] {
+    cursor: pointer !important;
+  }
+  body.payment-modal-open input,
+  body.payment-modal-open textarea {
+    cursor: text !important;
+  }
+}
+
+/* Con lightbox de carrusel abierto: mostrar cursor nativo en desktop */
+@media (min-width: 768px) {
+  body:has(.photo-carousel-lightbox),
+  body:has(.photo-carousel-lightbox) * {
+    cursor: auto !important;
+  }
+  body:has(.photo-carousel-lightbox) button,
+  body:has(.photo-carousel-lightbox) a,
+  body:has(.photo-carousel-lightbox) [role="button"] {
+    cursor: pointer !important;
+  }
+  body:has(.photo-carousel-lightbox) input,
+  body:has(.photo-carousel-lightbox) textarea {
+    cursor: text !important;
+  }
+}
+
 /* Efecto magnético en elementos interactivos */
 .magnetic-element {
   transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
@@ -435,17 +469,27 @@
   vertical-align: middle;
 }
 
-/* Modal métodos de pago */
+/* Modal métodos de pago: overlay fijo encima de todo el contenido */
 .payment-modal-overlay {
   position: fixed;
   inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
   z-index: 99999;
   background: rgba(0, 0, 0, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1.5rem;
+  padding: 1rem 1.5rem 1.5rem;
   cursor: pointer;
+}
+
+body.payment-modal-open {
+  overflow: hidden;
 }
 
 .payment-modal-content {
@@ -494,6 +538,17 @@
 
 .payment-modal-body--transferencia {
   padding-bottom: 3.5rem;
+}
+
+@media (max-width: 480px) {
+  .payment-modal-overlay {
+    padding: 0.75rem 1rem 1rem;
+    align-items: flex-start;
+    padding-top: 2rem;
+  }
+  .payment-modal-body--transferencia {
+    padding-bottom: 4rem;
+  }
 }
 
 .payment-modal-body .payment-modal-field > span {

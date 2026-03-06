@@ -39,7 +39,8 @@ export default function PaymentModal({ type, onClose }) {
 
   useEffect(() => {
     if (type) {
-      document.getElementById("pagos")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      document.body.classList.add("payment-modal-open");
+      return () => document.body.classList.remove("payment-modal-open");
     }
   }, [type]);
 
@@ -52,27 +53,41 @@ export default function PaymentModal({ type, onClose }) {
     }
 
     if (typeof window === "undefined") return;
+    let cancelled = false;
     if (window.paypal) {
-      renderButtons();
-      return;
+      setPaypalReady(true);
+      const t = setTimeout(() => safeRenderButtons(), 0);
+      return () => {
+        cancelled = true;
+        clearTimeout(t);
+      };
     }
     const script = document.createElement("script");
     script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}&currency=${defaultCurrency}&intent=capture`;
     script.async = true;
     script.onload = () => {
+      if (cancelled) return;
       setPaypalReady(true);
-      renderButtons();
+      requestAnimationFrame(() => safeRenderButtons());
     };
     script.onerror = () => setPaypalError("No se pudo cargar PayPal.");
     document.body.appendChild(script);
     return () => {
+      cancelled = true;
       if (script.parentNode) script.parentNode.removeChild(script);
     };
   }, [type]);
 
+  function safeRenderButtons() {
+    const container = paypalContainerRef.current;
+    if (!window.paypal || !container || !document.body.contains(container)) return;
+    renderButtons();
+  }
+
   const renderButtons = () => {
-    if (!window.paypal || !paypalContainerRef.current) return;
-    paypalContainerRef.current.innerHTML = "";
+    const container = paypalContainerRef.current;
+    if (!window.paypal || !container || !document.body.contains(container)) return;
+    container.innerHTML = "";
     const { createOrderUrl, captureOrderUrl, defaultAmount, defaultCurrency } =
       paymentConfig.paypal;
 
@@ -80,6 +95,28 @@ export default function PaymentModal({ type, onClose }) {
       setPaypalError(null);
       return;
     }
+
+    const parseJsonResponse = async (r) => {
+      const text = await r.text();
+      if (!r.ok) {
+        let msg = `Error ${r.status}`;
+        if (r.status === 404) msg = "El servidor de pagos no está disponible (prueba en la versión desplegada).";
+        else {
+          try {
+            const data = JSON.parse(text);
+            if (data?.error) msg = data.error;
+          } catch {
+            if (text) msg = text.slice(0, 200);
+          }
+        }
+        return Promise.reject(new Error(msg));
+      }
+      try {
+        return text ? JSON.parse(text) : {};
+      } catch {
+        return Promise.reject(new Error("Respuesta inválida del servidor"));
+      }
+    };
 
     window.paypal
       .Buttons({
@@ -93,8 +130,14 @@ export default function PaymentModal({ type, onClose }) {
               currency: defaultCurrency,
             }),
           })
-            .then((r) => r.json())
-            .then((data) => data.orderId || data.id),
+            .then(parseJsonResponse)
+            .then((data) => {
+              const id = data.orderId || data.id;
+              if (!id || typeof id !== "string") {
+                return Promise.reject(new Error(data?.error || "No se recibió orderId del servidor"));
+              }
+              return String(id).trim();
+            }),
         onApprove: (data) => {
           const orderId = data.orderID || data.orderId;
           if (!orderId) {
@@ -106,19 +149,15 @@ export default function PaymentModal({ type, onClose }) {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ orderId }),
           })
-            .then((r) => r.json())
-            .then(() => {
-              console.log("Order approved and captured", orderId);
-              onClose();
-            })
+            .then(parseJsonResponse)
+            .then(() => onClose())
             .catch((err) => {
-              console.error("Capture error", err);
-              setPaypalError("El pago se aprobó pero falló la confirmación. Contacta soporte.");
+              setPaypalError(err?.message || "El pago se aprobó pero falló la confirmación. Contacta soporte.");
             });
         },
         onError: (err) => setPaypalError(err?.message || "Error en PayPal"),
       })
-      .render(paypalContainerRef.current);
+      .render(container);
   };
 
   useEffect(() => {
@@ -126,10 +165,9 @@ export default function PaymentModal({ type, onClose }) {
       type === "paypal" &&
       paypalReady &&
       window.paypal &&
-      paypalContainerRef.current &&
       paymentConfig.paypal.createOrderUrl
     ) {
-      renderButtons();
+      safeRenderButtons();
     }
   }, [paypalReady]);
 
