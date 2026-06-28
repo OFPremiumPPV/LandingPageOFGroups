@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { paymentConfig } from "../config/paymentConfig";
+import { getTelegramUrl } from "../config/siteConfig";
 
 const CopyField = ({ label, value }) => {
   const [copied, setCopied] = useState(false);
@@ -190,6 +191,8 @@ export default function PaymentModal({ type, onClose }) {
     transferencia: "Transferencia Mexicana",
     oxxo: "Depósito en OXXO",
     paypal: "Pagar con PayPal",
+    felix: "Felix Pago",
+    remitly: "Remitly",
   };
   const title = titles[type] || "Método de pago";
 
@@ -223,7 +226,7 @@ export default function PaymentModal({ type, onClose }) {
                 <p className="payment-result-message">Tu pago fue procesado correctamente.</p>
                 <p className="payment-result-hint">No olvides enviar tu comprobante por Telegram.</p>
                 <a
-                  href="https://t.me/Rasputin1916GG"
+                  href={getTelegramUrl("Hola bro, ya realicé mi pago. Te envío el comprobante.")}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="payment-result-link"
@@ -289,9 +292,51 @@ export default function PaymentModal({ type, onClose }) {
           {type === "oxxo" && (
             <div className="space-y-4">
               <CopyField label="Número de tarjeta" value={paymentConfig.oxxo.tarjeta} />
-              <p className="text-sm text-gray-600 rounded-xl bg-white/40 p-3 backdrop-blur-sm">
+              <p className="text-sm text-gray-600 rounded-xl bg-white/40 p-4 backdrop-blur-sm leading-relaxed">
                 {paymentConfig.oxxo.instrucciones}
               </p>
+              <a
+                href={getTelegramUrl("Hola bro, ya hice mi depósito en OXXO. Te envío el comprobante.")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="glass-cta bg-sky-500 font-semibold block text-center"
+              >
+                Enviar comprobante por Telegram
+              </a>
+            </div>
+          )}
+
+          {type === "felix" && (
+            <div className="space-y-4">
+              <p className="text-sm text-gray-600 rounded-xl bg-white/40 p-4 backdrop-blur-sm leading-relaxed">
+                Felix Pago permite envíos rápidos desde USA. Contáctanos por Telegram
+                para recibir los datos de pago y confirmar tu acceso.
+              </p>
+              <a
+                href={getTelegramUrl("Hola bro, quiero pagar con Felix Pago. ¿Me compartes los datos?")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="glass-cta bg-sky-500 font-semibold block text-center"
+              >
+                Solicitar datos por Telegram
+              </a>
+            </div>
+          )}
+
+          {type === "remitly" && (
+            <div className="space-y-4">
+              <p className="text-sm text-gray-600 rounded-xl bg-white/40 p-4 backdrop-blur-sm leading-relaxed">
+                Remitly es ideal para transferencias internacionales. Escríbenos por
+                Telegram y te indicamos cómo completar tu pago.
+              </p>
+              <a
+                href={getTelegramUrl("Hola bro, quiero pagar con Remitly. ¿Me compartes los datos?")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="glass-cta bg-sky-500 font-semibold block text-center"
+              >
+                Solicitar datos por Telegram
+              </a>
             </div>
           )}
 

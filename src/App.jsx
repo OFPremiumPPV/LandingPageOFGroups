@@ -6,6 +6,11 @@ import WebGLBackground from "./WebGLBackground";
 import CustomCursor from "./components/CustomCursor";
 import PhotoCarousel from "./components/PhotoCarousel";
 import PaymentModal from "./components/PaymentModal";
+import PricingPlans from "./components/PricingPlans";
+import FAQSection from "./components/FAQSection";
+import PaymentMethodsGrid from "./components/PaymentMethodsGrid";
+import Navbar from "./components/Navbar";
+import { getTelegramUrl } from "./config/siteConfig";
 
 
 const MagneticButton = ({ href, children, className = "", target, rel }) => {
@@ -92,48 +97,6 @@ const MagneticCard = ({ children, className = "" }) => {
   );
 };
 
-const NavLink=({label,target})=>{
-  const ref = useRef(null);
-
-  useEffect(() => {
-    const element = ref.current;
-    if (!element) return;
-
-    const handleMouseMove = (e) => {
-      const rect = element.getBoundingClientRect();
-      const x = e.clientX - rect.left - rect.width / 2;
-      const y = e.clientY - rect.top - rect.height / 2;
-      
-      const moveX = x * 0.2;
-      const moveY = y * 0.2;
-      
-      element.style.transform = `translate(${moveX}px, ${moveY}px)`;
-    };
-
-    const handleMouseLeave = () => {
-      element.style.transform = "translate(0, 0)";
-    };
-
-    element.addEventListener("mousemove", handleMouseMove);
-    element.addEventListener("mouseleave", handleMouseLeave);
-
-    return () => {
-      element.removeEventListener("mousemove", handleMouseMove);
-      element.removeEventListener("mouseleave", handleMouseLeave);
-    };
-  }, []);
-
-  return (
-    <a
-      ref={ref}
-      href={`#${target}`}
-      className="glass-nav-link magnetic-element text-gray-700 text-sm font-medium hover:text-blue-700"
-    >
-      {label}
-    </a>
-  );
-};
-
 export default function App(){
   const [paymentModal, setPaymentModal] = useState(null);
 
@@ -142,30 +105,9 @@ return (
   <CustomCursor />
   {typeof window !== "undefined" && <WebGLBackground />}
 
-{/* NAVBAR */}
-<nav className="fixed top-0 left-0 right-0 w-full glass-nav z-50" aria-label="Navegación principal">
+<Navbar />
 
-<div className="max-w-6xl mx-auto flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-4 p-2 sm:p-4 md:p-5">
-
-<h1 className="font-bold text-gray-800 text-center sm:text-left text-sm sm:text-base md:text-lg px-2">
-OF Premium / OF Deluxe
-</h1>
-
-<div className="flex flex-wrap justify-center sm:justify-end gap-1 sm:gap-2 md:gap-4 lg:gap-6 text-gray-700 text-xs sm:text-sm">
-
-<NavLink label="Referencias" target="referencias"/>
-<NavLink label="Prueba contenido" target="prueba"/>
-<NavLink label="Mensaje Telegram" target="mensaje"/>
-<NavLink label="Metodos de pago" target="pagos"/>
-<NavLink label="Modelos disponibles" target="modelos"/>
-<NavLink label="Promociones" target="promos"/>
-
-</div>
-
-</div>
-</nav>
-
-<div className="pt-32 sm:pt-32 md:pt-36 lg:pt-40 text-center px-4">
+<div className="pt-28 sm:pt-28 md:pt-32 text-center px-4">
 
 <motion.h1
 initial={{opacity:0,y:20}}
@@ -187,7 +129,7 @@ Acceso inmediato • Contenido Actualizado • Los mejores PPV
 <p className="text-gray-600 text-sm sm:text-base mb-4">
   Atención personalizada, información de los grupos y envío de comprobante de pago.
 </p>
-<MagneticButton href="https://t.me/Rasputin1916GG" className="glass-cta bg-sky-500 font-semibold" target="_blank" rel="noopener noreferrer">
+<MagneticButton href={getTelegramUrl("Hola bro, quiero información sobre los grupos VIP.")} className="glass-cta bg-sky-500 font-semibold" target="_blank" rel="noopener noreferrer">
 Enviar Mensaje
 </MagneticButton>
 </GlassCard>
@@ -236,26 +178,12 @@ Ver Pruebas
 
 <GlassCard id="pagos">
 <h2 className="text-2xl font-semibold mb-2">Métodos de Pago</h2>
-<p className="text-gray-600 text-sm sm:text-base mb-4">
-  Haz clic para obtener datos de pago o paga con PayPal directamente aquí.
+<p className="text-gray-600 text-sm sm:text-base mb-6">
+  Aceptamos múltiples formas de pago para tu comodidad, tanto en México como internacionalmente.
+  Haz clic en un método para ver los detalles.
 </p>
-<ul className="space-y-3 text-gray-700 list-none p-0 m-0">
-<li>
-  <button type="button" className="payment-method-button w-full" onClick={() => setPaymentModal("transferencia")}>
-    <MagneticCard className="p-4 rounded-xl">Transferencia Mexicana</MagneticCard>
-  </button>
-</li>
-<li>
-  <button type="button" className="payment-method-button w-full" onClick={() => setPaymentModal("oxxo")}>
-    <MagneticCard className="p-4 rounded-xl">Depósito en OXXO</MagneticCard>
-  </button>
-</li>
-<li>
-  <button type="button" className="payment-method-button w-full" onClick={() => setPaymentModal("paypal")}>
-    <MagneticCard className="p-4 rounded-xl">PayPal</MagneticCard>
-  </button>
-</li>
-</ul>
+
+<PaymentMethodsGrid onSelect={setPaymentModal} />
 
 {paymentModal &&
   createPortal(
@@ -274,7 +202,8 @@ Ver Pruebas
   "Neveska","Gialover","Yajana Cano","Joselis Johana","sunshine23_45","ladydusha",
   "Adriana Olivarez","Lela Sohna","Gigardez","Marta Maria Santos","Maria Julissa","Fehgalvao",
   "Whitebean","lioqueen","g88su","lilmilk69","Vanessa Bohorquez","Whossooof","Catsara",
-  "Stefany Chavez"
+  "Stefany Chavez","Angie Beltran","Marlene Santana","Jessica Palacios","Winnyluusoficial",
+  "Alejandra Treviño"
 ]
 .map(n=>(
 <MagneticCard key={n} className="py-2.5 px-3 text-gray-800 font-medium text-sm sm:text-base truncate" title={n}>
@@ -286,23 +215,11 @@ Ver Pruebas
 </GlassCard>
 
 <GlassCard id="promos">
-<h2 className="text-2xl font-semibold mb-4">Promociones</h2>
+<PricingPlans />
+</GlassCard>
 
-<div className="space-y-4 text-gray-800">
-
-<MagneticCard className="p-4 rounded-xl font-medium">
-Grupo VIP — 200 MXN / 13 USD
-</MagneticCard>
-
-<MagneticCard className="p-4 rounded-xl font-medium">
-Grupo VIP PPV — 600 MXN / 37 USD
-</MagneticCard>
-
-<MagneticCard className="p-4 rounded-xl font-medium">
-VIP + VIP PPV — 700 MXN / 42 USD
-</MagneticCard>
-
-</div>
+<GlassCard id="faq">
+<FAQSection />
 </GlassCard>
 
 </div>
