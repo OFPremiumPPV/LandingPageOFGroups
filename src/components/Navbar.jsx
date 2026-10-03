@@ -1,4 +1,8 @@
 import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
+import { ArrowRightIcon } from "./icons";
+
+const NAV_ORDER = ["referencias", "prueba", "modelos", "promos", "pagos", "mensaje", "faq"];
 
 const NAV_ITEMS = [
   {
@@ -107,6 +111,13 @@ function NavPill({ item, isActive }) {
       className={`glass-nav-pill magnetic-element${isActive ? " glass-nav-pill--active" : ""}`}
       title={item.label}
     >
+      {isActive && (
+        <motion.span
+          layoutId="nav-active-pill"
+          className="glass-nav-pill-indicator"
+          transition={{ type: "spring", stiffness: 380, damping: 30 }}
+        />
+      )}
       <span className="glass-nav-pill-icon">{item.icon}</span>
       <span className="glass-nav-pill-label">{item.label}</span>
     </a>
@@ -115,6 +126,15 @@ function NavPill({ item, isActive }) {
 
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState("");
+  const [scrolled, setScrolled] = useState(false);
+  const items = NAV_ORDER.map((id) => NAV_ITEMS.find((item) => item.target === id));
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     const sectionIds = NAV_ITEMS.map((item) => item.target);
@@ -141,9 +161,15 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className="glass-nav" aria-label="Navegación principal">
+    <motion.nav
+      className={`glass-nav${scrolled ? " glass-nav--scrolled" : ""}`}
+      aria-label="Navegación principal"
+      initial={{ y: -80, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+    >
       <div className="glass-nav-inner">
-        <a href="#" className="glass-nav-brand magnetic-element">
+        <a href="#inicio" className="glass-nav-brand magnetic-element">
           <span className="glass-nav-brand-icon" aria-hidden="true">✦</span>
           <span className="glass-nav-brand-text">
             <span className="glass-nav-brand-title">OF Premium</span>
@@ -154,7 +180,7 @@ export default function Navbar() {
 
         <div className="glass-nav-dock" role="navigation">
           <div className="glass-nav-dock-track">
-            {NAV_ITEMS.map((item) => (
+            {items.map((item) => (
               <NavPill
                 key={item.target}
                 item={item}
@@ -163,7 +189,12 @@ export default function Navbar() {
             ))}
           </div>
         </div>
+
+        <a href="#promos" className="glass-nav-cta">
+          Obtener acceso
+          <ArrowRightIcon className="btn-icon" />
+        </a>
       </div>
-    </nav>
+    </motion.nav>
   );
 }

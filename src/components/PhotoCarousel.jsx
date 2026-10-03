@@ -43,7 +43,14 @@ export default function PhotoCarousel({ items = [], title }) {
           ‹
         </button>
 
-        <div className="photo-carousel-stage">
+        <motion.div
+          className="photo-carousel-stage"
+          style={{ touchAction: "pan-y" }}
+          onPanEnd={(_, info) => {
+            if (info.offset.x < -40) goNext();
+            else if (info.offset.x > 40) goPrev();
+          }}
+        >
           {items.map((item, index) => {
             const offset = getOffset(index);
             if (offset === null) return null;
@@ -72,7 +79,7 @@ export default function PhotoCarousel({ items = [], title }) {
               </motion.button>
             );
           })}
-        </div>
+        </motion.div>
 
         <button
           type="button"
