@@ -15,23 +15,23 @@ export const MODELS = [
 ];
 
 export const REFERENCIAS = [
-  { src: "https://images2.imgbox.com/ee/73/uq61pLyu_o.jpeg", href: "https://t.me/refOfPremium", alt: "Referencia 1" },
-  { src: "https://images2.imgbox.com/d1/2c/5qsF3EqV_o.jpeg", href: "https://t.me/refOfPremium", alt: "Referencia 2" },
-  { src: "https://images2.imgbox.com/c1/53/sSkh74iJ_o.jpeg", href: "https://t.me/refOfPremium", alt: "Referencia 3" },
-  { src: "https://images2.imgbox.com/e4/0e/lK3gI3fY_o.jpeg", href: "https://t.me/refOfPremium", alt: "Referencia 4" },
-  { src: "https://images2.imgbox.com/40/d9/SOuJtGUe_o.jpeg", href: "https://t.me/refOfPremium", alt: "Referencia 5" },
-  { src: "https://images2.imgbox.com/96/0d/KuolLGJT_o.jpeg", href: "https://t.me/refOfPremium", alt: "Referencia 6" },
-  { src: "https://images2.imgbox.com/ae/d3/fEwI3A5R_o.jpeg", href: "https://t.me/refOfPremium", alt: "Referencia 7" },
+  { src: "https://cdn.imgchest.com/files/01485cc6d21d.jpg", href: "https://t.me/refOfPremium", alt: "Referencia 1" },
+  { src: "https://cdn.imgchest.com/files/169a73826184.jpg", href: "https://t.me/refOfPremium", alt: "Referencia 2" },
+  { src: "https://cdn.imgchest.com/files/ab10c31a508b.jpg", href: "https://t.me/refOfPremium", alt: "Referencia 3" },
+  { src: "https://cdn.imgchest.com/files/d54ebcc6af38.jpg", href: "https://t.me/refOfPremium", alt: "Referencia 4" },
+  { src: "https://cdn.imgchest.com/files/039f051c6b64.jpg", href: "https://t.me/refOfPremium", alt: "Referencia 5" },
+  { src: "https://cdn.imgchest.com/files/faf8f36659f8.jpg", href: "https://t.me/refOfPremium", alt: "Referencia 6" },
+  { src: "https://cdn.imgchest.com/files/6595940a451e.jpg", href: "https://t.me/refOfPremium", alt: "Referencia 7" },
 ];
 
 export const PRUEBAS = [
-  { src: "https://images2.imgbox.com/39/d2/Nto14S4V_o.jpeg", href: "https://t.me/pruebaCont", alt: "Prueba 1" },
-  { src: "https://images2.imgbox.com/b7/92/xWjCl2G6_o.jpeg", href: "https://t.me/pruebaCont", alt: "Prueba 2" },
-  { src: "https://images2.imgbox.com/c7/ef/v7aO6I4W_o.jpeg", href: "https://t.me/pruebaCont", alt: "Prueba 3" },
-  { src: "https://images2.imgbox.com/8c/6b/jbFhkIoF_o.jpeg", href: "https://t.me/pruebaCont", alt: "Prueba 4" },
-  { src: "https://images2.imgbox.com/d3/36/Og2JaRfo_o.jpeg", href: "https://t.me/pruebaCont", alt: "Prueba 5" },
-  { src: "https://images2.imgbox.com/ce/d6/9LAEJSXd_o.jpeg", href: "https://t.me/pruebaCont", alt: "Prueba 6" },
-  { src: "https://images2.imgbox.com/b1/67/tKRV7Uo2_o.jpeg", href: "https://t.me/pruebaCont", alt: "Prueba 7" },
+  { src: "https://cdn.imgchest.com/files/fa01d802ce1d.jpg", href: "https://t.me/pruebaCont", alt: "Prueba 1" },
+  { src: "https://cdn.imgchest.com/files/f767f343707e.jpg", href: "https://t.me/pruebaCont", alt: "Prueba 2" },
+  { src: "https://cdn.imgchest.com/files/4c77b1f355e8.jpg", href: "https://t.me/pruebaCont", alt: "Prueba 3" },
+  { src: "https://cdn.imgchest.com/files/e656e72bdb07.jpg", href: "https://t.me/pruebaCont", alt: "Prueba 4" },
+  { src: "https://cdn.imgchest.com/files/6f1a505dcca5.jpg", href: "https://t.me/pruebaCont", alt: "Prueba 5" },
+  { src: "https://cdn.imgchest.com/files/18784e110313.jpg", href: "https://t.me/pruebaCont", alt: "Prueba 6" },
+  { src: "https://cdn.imgchest.com/files/365b32803f7a.jpg", href: "https://t.me/pruebaCont", alt: "Prueba 7" },
 ];
 
 // Archivo de cdn.imgchest.com/files/ (incluye la extensión: .png, .jpg, .webp...)
@@ -52,7 +52,7 @@ export const SHOWCASE_IMAGES = {
   contenidoNuevo: imgchest("328c3c4a1b6b.png"),
   cambios: imgchest("6de49dccbb9b.png"),
   todoTelegram: imgchest("9d591fe72bed.png"),
-  preguntaModelo: imgchest("myd5cknxgo4.png"),
+  preguntaModelo: imgchest("6484d55842a5.jpg"),
 };
 
 export const PAYMENT_METHODS = [
