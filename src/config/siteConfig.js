@@ -34,6 +34,27 @@ export const PRUEBAS = [
   { src: "https://images2.imgbox.com/b1/67/tKRV7Uo2_o.jpeg", href: "https://t.me/pruebaCont", alt: "Prueba 7" },
 ];
 
+// Archivo de cdn.imgchest.com/files/ (incluye la extensión: .png, .jpg, .webp...)
+const imgchest = (file) => `https://cdn.imgchest.com/files/${file}`;
+
+export const SHOWCASE_IMAGES = {
+  referencias: imgchest("myd5cknxgo4.png"),
+  prueba: imgchest("myd5cknxgo4.png"),
+  modelos: imgchest("myd5cknxgo4.png"),
+  planes: imgchest("myd5cknxgo4.png"),
+  telegram: imgchest("myd5cknxgo4.png"),
+  ofpremium: imgchest("myd5cknxgo4.png"),
+  ofdeluxe: imgchest("myd5cknxgo4.png"),
+  ambos: imgchest("myd5cknxgo4.png"),
+  pagoMexico: imgchest("myd5cknxgo4.png"),
+  pagoInternacional: imgchest("myd5cknxgo4.png"),
+  unSoloPago: imgchest("myd5cknxgo4.png"),
+  contenidoNuevo: imgchest("myd5cknxgo4.png"),
+  cambios: imgchest("myd5cknxgo4.png"),
+  todoTelegram: imgchest("myd5cknxgo4.png"),
+  preguntaModelo: imgchest("myd5cknxgo4.png"),
+};
+
 export const PAYMENT_METHODS = [
   {
     id: "transferencia",
